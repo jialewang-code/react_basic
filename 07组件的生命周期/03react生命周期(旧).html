@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="test"></div>
+  
+  <!-- 引入react核心库 -->
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <!-- 用于支持react操作DOM -->
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <!-- 用于将jsx转为js -->
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  
+  <script type="text/babel">
+    // 创建组件
+    class A extends React.Component{
+      state={carName:'奔驰'}
+
+      changeCar=()=>{
+        this.setState({carName:'宝马'})
+      }
+
+      render(){
+        return(
+          <div>
+            <div>我是A组件</div>
+            <button onClick={this.changeCar}>换车</button>
+            <B carName={this.state.carName}/>  
+          </div>
+        )
+      }
+    }
+
+    class B extends React.Component{
+      //组件将要接收new props钩子，第一次接收不执行
+      UNSAFE_componentWillReceiveProps(){
+        console.log('B---componentWillReceiveProps');
+      }
+
+      //控制组件更新的”阀门“，不写时默认调用返回true
+      shouldComponentUpdate(){
+        console.log('B---shouldComponentUpdate');
+        return true
+      }
+
+      //组件将要更新的钩子
+      UNSAFE_componentWillUpdate(){
+        console.log('B---componentWillUpdate');
+      }
+
+      //组件更新完毕的钩子
+      componentDidUpdate(){
+        console.log('B---componentDidUpdate');
+      }
+
+      render(){
+        console.log('B---render');
+        return(
+          <div>我是B组件,我的汽车是:{this.props.carName}</div>
+        )
+      }
+    }
+    //渲染组件
+    ReactDOM.render(<A/>,document.getElementById('test'))
+  </script>
+</body>
+</html>

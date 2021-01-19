@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="test"></div>
+  
+  <!-- 引入react核心库 -->
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <!-- 用于支持react操作DOM -->
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <!-- 用于将jsx转为js -->
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+  
+  <script type="text/babel">
+    class Demo extends React.Component{
+      state={isHot:true}
+      showData1=()=>{
+        const {input1}=this;
+        alert(input1.value)
+      }
+
+      showData2=()=>{
+        // console.log(this.refs.input1);
+        const {input2}=this;
+        alert(input2.value)
+      }
+
+      changeWeather=()=>{
+        const {isHot}=this.state;
+        this.setState({isHot:!isHot})
+      }
+
+      render(){
+        const {isHot}=this.state;
+
+        return (
+          <div>
+            <div>今天天气真{isHot? '炎热':'凉爽'}</div>
+            {/*内置的ref回调函数在组件更新时会执行两次，一次参数是null,第二次参数才是节点*/}
+            {/*可以用组件实例绑定函数解决，不过不解决也可以，没有什么影响*/}
+            <input ref={(c)=>{this.input1=c;console.log(c);}} type="text" />&nbsp;
+            <button onClick={this.showData1}>点击按钮提示数据</button>&nbsp;
+            <button onClick={this.changeWeather}>点击切换</button>
+          </div>
+        )
+      }
+    }
+
+    ReactDOM.render(<Demo/>,document.getElementById('test'))
+  </script>
+</body>
+</html>

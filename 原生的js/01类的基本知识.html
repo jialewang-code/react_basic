@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script type="text/javascript">
+    class Person{
+      constructor(name,age){
+        this.name=name;
+        this.age=age;
+      }
+      height=180;//类可以直接赋值，所有的实例对象都增加一个属性
+      static color='green';
+      say(){
+        console.log(`我叫${this.name}，我的年龄是${this.age},${this.color}`);
+      }
+      static action(){
+        console.log(`我皮肤的颜色是${this.color}和${this.height}`);
+      }
+    }
+    class Student extends Person{
+      constructor(name,age,school){
+        super(name,age);
+        this.school=school
+      }
+    }
+
+    let p1=new Person('Tom',18);
+    let p2=new Person('jerry',19);
+    let wang=new Student('curry',18,'雅厅')
+    let person=Person.action();
+    p1.say()
+    console.log(wang);
+    console.log(Student);
+    console.log(p1);
+    console.log(p2);
+  </script>
+</body>
+</html>

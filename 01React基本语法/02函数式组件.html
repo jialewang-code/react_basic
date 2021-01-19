@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div id="test"></div>
+  <!-- 引入react核心库 -->
+  <script src="https://unpkg.com/react@16/umd/react.development.js"></script>
+  <!-- 用于支持react操作DOM -->
+  <script src="https://unpkg.com/react-dom@16/umd/react-dom.development.js"></script>
+  <!-- 用于将jsx转为js -->
+  <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+    
+<script type="text/babel">
+  function MyComponent(){
+    console.log(this);//此处this是undefined,因为babel编译后开启了严格模式
+    return <h2>我是标题</h2>
+  }
+  ReactDOM.render(<MyComponent/>,document.getElementById('test'))
+  /*
+      执行了ReactDOM.render方法后
+      1.React解析了组件标签，
+      2.发现组件是使用函数定义的，随后调用该函数，将返回的虚拟DOM转为真实DOM，进行渲染
+  */
+</script>
+</body>
+</html>

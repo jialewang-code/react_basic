@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <script>
+    class Person{
+      constructor(name,age){
+        this.name=name;
+        this.age=age;
+      }
+      speak(){
+        console.log(this);
+      }
+    }
+
+    let p1=new Person('curry',18);
+    p1.speak();
+    let x=p1.speak;
+    x();//函数的直接调用
+  </script>
+</body>
+</html>
